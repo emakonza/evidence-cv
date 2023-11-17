@@ -1,4 +1,3 @@
-# This workflow will copy the Static_Website_CV folder to Amazon S3
 name: Deploy to S3
 
 on:
@@ -11,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
+      - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -23,4 +22,4 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync "E:\DevOps_Training\project_tasks\Static_Website_CV" s3://evidence-cv --delete --acl public-read
+          aws s3 sync ./ s3://evidence-cv --acl public-read
