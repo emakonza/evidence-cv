@@ -1,4 +1,4 @@
-name: Deploy to S3
+name: Deploy static website to S3
 
 on:
   push:
@@ -8,18 +8,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
-
       - name: Deploy to S3
-        run: |
-          aws s3 sync ./ s3://evidence-cv --acl public-read
+        uses: reggionick/s3-deploy@v4
+        with:
+          folder: .
+          bucket: evidence-cv
+          bucket-region: eu-north-1
+          delete-removed: true
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
