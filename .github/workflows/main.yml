@@ -1,34 +1,24 @@
-name: Deploy Static Website
+# This workflow will copy /out folder to Amazon S3
+name: evidence-cv
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Set up AWS CLI
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: s3-website.eu-north-1  # Replace with your AWS region
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-  
-    - name: Deploy to S3
-      run: |
-        aws s3 sync ./path/to/your/static/website s3://your-s3-bucket-name
-
-    - name: Commit and push changes
-      run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git add .
-        git commit -m "Auto-deploy to S3"
-        git push
+      - name: Copy files to S3 with the AWS CLI
+        run: |
+          aws s3 sync ./out s3://evidence-cv --delete --acl public-read
