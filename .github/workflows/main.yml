@@ -1,4 +1,5 @@
 name: Deploy static website to S3
+
 on:
   push:
     branches:
@@ -12,13 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get install -y python3
+          sudo apt-get install -y python3-pip
+          pip3 install awscli
+
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set default.region eu-north-1
 
       - name: Deploy to S3
-        run: |
-          aws s3 sync . s3://evidence-cv --delete --acl public-read
+        run: aws s3 sync . s3://evidence-cv --delete
