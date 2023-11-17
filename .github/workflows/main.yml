@@ -1,3 +1,4 @@
+# This workflow will copy the Static_Website_CV folder to Amazon S3
 name: Deploy to S3
 
 on:
@@ -22,4 +23,4 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync ./out s3://evidence-cv --delete --acl public-read
+          aws s3 sync "E:\DevOps_Training\project_tasks\Static_Website_CV" s3://evidence-cv --delete --acl public-read
