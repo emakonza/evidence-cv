@@ -1,29 +1,126 @@
-name: Deploy static website to S3
+<!DOCTYPE html>
+<html lang="en">
 
-on:
-  push:
-    branches:
-      - main
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence Makonza - DevOps Engineer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        h1 {
+            color: #2c3e50; /* Dark Blue */
+        }
 
-      - name: Install AWS CLI
-        run: |
-          sudo apt-get install -y python3
-          sudo apt-get install -y python3-pip
-          pip3 install awscli
+        h2 {
+            color: #3498db; /* Blue */
+        }
 
-      - name: Configure AWS credentials
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region eu-north-1
+        p {
+            color: #555;
+        }
 
-      - name: Deploy to S3
-        run: aws s3 sync . s3://evidence-cv --delete
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        footer {
+            text-align: center;
+            color: #777;
+            margin-top: 30px;
+        }
+
+        img {
+            width: 200px; /* Adjust the width as needed */
+            border-radius: 50%; /* Optional: Create a circular image */
+            margin: 20px auto; /* Center the image with some margin */
+            display: block; /* Ensure proper block display */
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            justify-items: center;
+        }
+
+        .skills li {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="Evidence.jpg" alt="Evidence Makonza" />
+        <h1>Evidence Makonza</h1>
+        <h2>DevOps Engineer at Africa Mobile Networks</h2>
+    </header>
+
+    <section>
+        <h2>Contact/Personal Information</h2>
+        <ul>
+            <li>Location: Milton Keynes</li>
+            <li>Email: <a href="mailto:emakonza@yahoo.com">emakonza@yahoo.com</a></li>
+            <li>LinkedIn: <a href="www.linkedin.com/In/evidence-makonza-pmp®-aaa9bab5">LinkedIn Profile</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Education & Certifications</h2>
+        <ul>
+            <li>BSc. Information Systems Honours Degree 2.1 - Midlands State University</li>
+            <li>PMP®-Project Management Professional - PMI Project Management Institute</li>
+            <li>FTC in Telecommunications 2730 City&Guilds London Institute</li>
+            <li>Brainnest AGILE Practitioner Hands-on Training, 2023</li>
+            <li>IBT Learning 2024 DevOps Engineer Training</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Skills Profile</h2>
+        <div class="skills">
+            <li>Continuous Integration/Continuous Deployment (CI/CD)</li>
+            <li>Infrastructure as Code (IaC) with tools like Terraform</li>
+            <li>Containerization with Docker and orchestration with Kubernetes</li>
+            <li>Cloud Platforms: AWS, Azure, GCP</li>
+            <li>Configuration Management: Ansible, Chef, Puppet</li>
+            <li>Version Control: Git</li>
+            <li>Monitoring and Logging: Prometheus, Grafana, ELK Stack</li>
+            <li>Scripting and Automation: Bash, Python, PowerShell</li>
+            <li>Security: DevSecOps, IAM, Encryption</li>
+            <li>CI/CD Tools: Jenkins, GitHub Actions</li>
+            <li>Cloud Services: AWS EC2, S3, RDS</li>
+            <li>Infrastructure Monitoring: Grafana, Prometheus</li>
+            <li>Machine Learning: TensorFlow, Scikit-learn</li>
+            <li>Agile Methodologies: Scrum, Kanban</li>
+            <li>Software Development: Java, Node.js, ReactJS</li>
+            <li>Database Management: MongoDB, MySQL</li>
+            <li>Frontend Development: HTML5, CSS3, JavaScript</li>
+            <li>Backend Development: Express.js, Spring Boot</li>
+            <li>Test Automation: Selenium, JUnit, Jest</li>
+        </div>
+   
