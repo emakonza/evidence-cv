@@ -55,6 +55,21 @@
             margin: 20px auto; /* Center the image with some margin */
             display: block; /* Ensure proper block display */
         }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            justify-items: center;
+        }
+
+        .skills li {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -86,15 +101,17 @@
 
     <section>
         <h2>Skills Profile</h2>
-        <ul>
+        <div class="skills">
             <li>Continuous Integration/Continuous Deployment (CI/CD)</li>
             <li>Infrastructure as Code (IaC) with tools like Terraform</li>
             <li>Containerization with Docker and orchestration with Kubernetes</li>
             <li>Cloud Platforms: AWS, Azure, GCP</li>
             <li>Configuration Management: Ansible, Chef, Puppet</li>
             <li>Version Control: Git</li>
-            <!-- Add more skills -->
-        </ul>
+            <li>Monitoring and Logging: Prometheus, Grafana, ELK Stack</li>
+            <li>Scripting and Automation: Bash, Python, PowerShell</li>
+            <li>Security: DevSecOps, IAM, Encryption</li>
+        </div>
     </section>
 
     <section>
